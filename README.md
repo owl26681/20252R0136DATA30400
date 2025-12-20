@@ -1,19 +1,34 @@
-pseudo label doc ipynb
- - label을 설명하는 문서를 gpt를 호출하여 생성
+# Amazon-531 Hierarchical Multi-Label Classification (BDA Final Project)
 
-pseudo doc generate ipynb
- - label에 대항하는 리뷰 문서를 gpt를 호출하여 생성
+This repository contains the code and notebooks for a hierarchical multi-label text classification project on **Amazon-531**.
+The pipeline focuses on **silver label generation**, **graph-aware class embeddings (GAT)**, and **self-training**.
 
-이미 위에서 생성한 문서들은 Amazon_products에 들어가있다.
+---
 
-selftraininig ipynb
- - best model의 실행 파일 
+## Project Structure
 
-selftraining_2mlp ipynb
- - best model에서 gat를 뺀 버전
+### Notebooks
 
-selftraining_2gat ipynb
- - best model에서 gat층을 늘린 버전
+#### 1) Pseudo label / document generation
+- **`pseudo_label_doc.ipynb`**  
+  Generates **class description documents** by calling GPT (documents that explain each label).
 
-wout_selftraining ipynb
- - best model에서 selftraining을 하지 않은 버전
+- **`pseudo_doc_generate.ipynb`**  
+  Generates **review-like documents for each label** by calling GPT (data augmentation).
+
+> Generated outputs from the notebooks above are stored in **`Amazon_products/`**.
+
+#### 2) Training / Self-training
+- **`selftraining.ipynb`**  
+  Runs the **best model** (final pipeline).
+
+- **`selftraining_2mlp.ipynb`**  
+  Ablation: **best model without GAT** (replaces GAT with a 2-layer MLP).
+
+- **`selftraining_2gat.ipynb`**  
+  Ablation: **best model with deeper GAT** (2-layer GAT).
+
+- **`wout_selftraining.ipynb`**  
+  Ablation: **best model without self-training**.
+
+---
